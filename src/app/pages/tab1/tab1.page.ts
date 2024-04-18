@@ -166,11 +166,38 @@ export class Tab1Page implements OnInit {
       const section = sections[currentSectionIndex];
       html2canvas(section).then((canvas) => {
         const imageData = canvas.toDataURL('image/jpg');
-        const width = doc.internal.pageSize.getWidth();
+        //let width = doc.internal.pageSize.getWidth();
         /*Se calcula el height dependiendo del width del canvas y su relación con el width.
          *Esto se hace para que la imagen mantenga dimensiones proporcionales según el width de la página.
          */
-        const height = canvas.height * (width / canvas.width);
+        //Joseba: Se pone limita la altura y anchura máxima del canvas para que quepa en una página
+        // TODO: resolver relación de aspecto
+        // ---------------------
+        //let height = canvas.height * (width / canvas.width);
+        const maxCanvasWidth = anchoMax;
+        const maxCanvasHeight = altoMax - headerHeight - footerHeight - 20;
+
+        let widthRatio =
+          canvas.width > maxCanvasWidth ? maxCanvasWidth / canvas.width : 1;
+        let heightRatio =
+          canvas.height > maxCanvasHeight ? maxCanvasHeight / canvas.height : 1;
+
+        let width = canvas.width;
+        let height = canvas.height;
+
+        if (heightRatio < 1 && heightRatio < widthRatio) {
+          height = maxCanvasHeight;
+          width = canvas.width * heightRatio;
+        }
+
+        if (widthRatio < 1 && widthRatio < heightRatio) {
+          width = maxCanvasWidth;
+          height = canvas.height * widthRatio;
+        }
+
+        console.log('**', canvas.width, maxCanvasWidth, width, widthRatio);
+        console.log('**', canvas.height, maxCanvasHeight, height, heightRatio);
+
         if (currentPageHeight + height >= doc.internal.pageSize.getHeight()) {
           doc.addPage();
           currentPageHeight = headerHeight + footerHeight;
