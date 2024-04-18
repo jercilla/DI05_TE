@@ -32,6 +32,7 @@
           </ion-row>      
         </ion-grid>      
       </div>
+
       <div class="table-container">
         <app-tablas tituloTabla="Table" [datosTabla]="datosTablaTab1"></app-tablas>
       </div>
@@ -43,22 +44,10 @@
         </ul>
       </div>
 
-      <!-- <div class="seccion list-container">
-        <h2>List</h2>
-        <ul *ngFor="let lista of datosLista">
-          <li>{{lista}}</li>
-        </ul>
-      </div>
       <div class="table-container">
-        <h2 class="seccion">Table</h2>
-        <app-tablas [datosTabla]="datosTablaTab1"></app-tablas>
+        <app-tablas tituloTabla="Table" [datosTabla]="datosTablaTab1"></app-tablas>
       </div>
-      <div class="seccion list-container">
-        <h2>List</h2>
-        <ul *ngFor="let lista of datosLista">
-          <li>{{lista}}</li>
-        </ul>
-      </div> -->
+
     </div>
   </div>
 </ion-content>

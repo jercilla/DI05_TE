@@ -170,9 +170,6 @@ export class Tab1Page implements OnInit {
         /*Se calcula el height dependiendo del width del canvas y su relación con el width.
          *Esto se hace para que la imagen mantenga dimensiones proporcionales según el width de la página.
          */
-        //Joseba: Se pone limita la altura y anchura máxima del canvas para que quepa en una página
-        // TODO: resolver relación de aspecto
-        // ---------------------
         //let height = canvas.height * (width / canvas.width);
         const maxCanvasWidth = anchoMax;
         const maxCanvasHeight = altoMax - headerHeight - footerHeight - 20;
